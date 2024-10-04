@@ -4,11 +4,13 @@
 // Rôle : test de la classe Utilisateur.php
 // Dernière mise à jour : 18/7/2021 par dPlanchet
 
-include_once ('Utilisateur.php');
+use classes\Utilisateur;
+
+include_once ('../classes/Utilisateur.php');
 
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="">
 <head>
 	<meta charset="utf-8">
 	<title>Test de la classe Utilisateur</title>
