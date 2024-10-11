@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="53725f46-7929-48e7-8bd6-943b4cb3af8c" name="Changes" comment="feat(Point.php,PointDeTrace.php,Trace.php): Création des classes" />
+    <list default="true" id="53725f46-7929-48e7-8bd6-943b4cb3af8c" name="Changes" comment="feat(Utilisateur.test.php):Modification du chemin pour que le test fonctionne">
+      <change afterPath="$PROJECT_DIR$/tracegps/public/parametres.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tracegps/src/classes/DAO.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tracegps/src/tests/DAO.test.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tracegps/src/tests/DAO.test1.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tracegps/src/tests/DAO.test2.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tracegps/src/tests/DAO.test3.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tracegps/src/tests/DAO.test4.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,6 +66,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "JavaScript Debug.test_acces_bdd_tracegps.php.executor": "Debug",
+    "PHP Script.DAO.test.php.executor": "Run",
     "PHP Script.Mobile_Detect.php.executor": "Debug",
     "PHP Script.Outils.php.executor": "Debug",
     "PHP Script.Outils.test.php.executor": "Debug",
@@ -68,7 +78,7 @@
     "PHP Script.essai.php.executor": "Run",
     "PHP Script.test_acces_bdd_tracegps.php.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "6e008e04",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/wamp64/www/ws-php-dp",
     "node.js.detected.package.eslint": "true",
@@ -76,24 +86,24 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\ws-php-dp\tracegps\src\tests" />
+      <recent name="C:\wamp64\www\ws-php-dp\tracegps\src\classes" />
+      <recent name="C:\wamp64\www\ws-php-dp\tracegps\public" />
       <recent name="C:\wamp64\www\ws-php-dp\tracegps" />
       <recent name="C:\wamp64\www\ws-php-dp\tracegps\src\public" />
-      <recent name="C:\wamp64\www\ws-php-dp\tracegps\src\test" />
-      <recent name="C:\wamp64\www\ws-php-dp\tracegps\src\modele" />
     </key>
   </component>
-  <component name="RunManager" selected="PHP Script.Outils.php">
+  <component name="RunManager" selected="PHP Script.DAO.test.php">
     <configuration name="test_acces_bdd_tracegps.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ws-php-dp/tracegps/public/test_acces_bdd_tracegps.php" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="Mobile_Detect.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/tracegps/src/classes/Mobile_Detect.php">
+    <configuration name="DAO.test.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/tracegps/src/tests/DAO.test.php">
       <method v="2" />
     </configuration>
     <configuration name="Outils.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/tracegps/src/classes/Outils.php">
@@ -107,11 +117,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHP Script.DAO.test.php" />
         <item itemvalue="PHP Script.Outils.php" />
         <item itemvalue="PHP Script.afficher_phpinfo.php" />
         <item itemvalue="PHP Script.test_acces_bdd_tracegps.php" />
         <item itemvalue="JavaScript Debug.test_acces_bdd_tracegps.php" />
-        <item itemvalue="PHP Script.Mobile_Detect.php" />
       </list>
     </recent_temporary>
   </component>
@@ -137,7 +147,8 @@
       <workItem from="1727946521543" duration="14425000" />
       <workItem from="1728023901231" duration="1313000" />
       <workItem from="1728025248293" duration="109000" />
-      <workItem from="1728025438791" duration="27000" />
+      <workItem from="1728025438791" duration="9415000" />
+      <workItem from="1728630229538" duration="7513000" />
     </task>
     <task id="LOCAL-00001" summary="4">
       <option name="closed" value="true" />
@@ -187,7 +198,23 @@
       <option name="project" value="LOCAL" />
       <updated>1728024572002</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="feat(Utilisateur.php): Developpement de la classe Utilisateur en relation avec Utilisateur.test.php">
+      <option name="closed" value="true" />
+      <created>1728035546365</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1728035546365</updated>
+    </task>
+    <task id="LOCAL-00008" summary="feat(Utilisateur.test.php):Modification du chemin pour que le test fonctionne">
+      <option name="closed" value="true" />
+      <created>1728035620274</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1728035620274</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -218,7 +245,9 @@
     <MESSAGE value="feat : Point.php&#10; &#10;PointDeTrace.php Trace.php" />
     <MESSAGE value="Ajout Point.php PointDeTrace.php Trace.php" />
     <MESSAGE value="feat(Point.php,PointDeTrace.php,Trace.php): Création des classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(Point.php,PointDeTrace.php,Trace.php): Création des classes" />
+    <MESSAGE value="feat(Utilisateur.php): Developpement de la classe Utilisateur en relation avec Utilisateur.test.php" />
+    <MESSAGE value="feat(Utilisateur.test.php):Modification du chemin pour que le test fonctionne" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(Utilisateur.test.php):Modification du chemin pour que le test fonctionne" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
