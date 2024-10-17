@@ -17,11 +17,11 @@
 // Après avoir testé et validé une méthode, faites un commit et un push pour transmettre cette version aux autres développeurs.
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-	<meta charset="utf-8">
-	<title>Test de la classe DAO</title>
-	<style type="text/css">body {font-family: Arial, Helvetica, sans-serif; font-size: small;}</style>
+    <meta charset="utf-8">
+    <title>Test de la classe DAO</title>
+    <style type="text/css">body {font-family: Arial, Helvetica, sans-serif; font-size: small;}</style>
 </head>
 <body>
 
@@ -31,15 +31,46 @@ include_once ('../classes/DAO.php');
 $dao = new DAO();
 
 
-// test de la méthode xxxxxxxxxxxxxxxxxxxxxxxxxxx ----------------------------------------------------------
-// modifié par xxxxxxxxxxxxxxxxx le xxxxxxxxxx
-echo "<h3>Test de xxxxxxxxxxxxxxxxx : </h3>";
-// A CONTINUER .........
+
+
+echo "<h3>Test de getLesTraces(idUtilisateur) : </h3>";
+$lesTraces = $dao->getLesTraces(2);
+$nbReponses = sizeof($lesTraces);
+echo "<p>Nombre de traces de l'utilisateur 2 : " . $nbReponses . "</p>";
+// affichage des traces
+foreach ($lesTraces as $uneTrace)
+{ echo ($uneTrace->toString());
+    echo ('<br>');
+}
 
 
 
 
 
+
+// test de la méthode supprimerUneTrace -----------------------------------------------------------
+// modifié par dP le 15/8/2021
+echo "<h3>Test de supprimerUneTrace : </h3>";
+$ok = $dao->supprimerUneTrace(20);
+if ($ok) {
+    echo "<p>Trace bien supprimée !</p>";
+}
+else {
+    echo "<p>Echec lors de la suppression de la trace !</p>";
+}
+
+
+// test de la méthode getLesPointsDeTrace ---------------------------------------------------------
+// modifié par dP le 13/8/2021
+echo "<h3>Test de getLesPointsDeTrace : </h3>";
+$lesPoints = $dao->getLesPointsDeTrace(1);
+$nbPoints = sizeof($lesPoints);
+echo "<p>Nombre de points de la trace 1 : " . $nbPoints . "</p>";
+// affichage des points
+foreach ($lesPoints as $unPoint)
+{ echo ($unPoint->toString());
+    echo ('<br>');
+}
 
 
 

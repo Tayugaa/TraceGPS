@@ -38,6 +38,7 @@
 
 // certaines méthodes nécessitent les classes suivantes :
 use classes\Outils;
+use classes\PointDeTrace;
 use classes\Trace;
 use classes\Utilisateur;
 
@@ -361,42 +362,84 @@ class DAO
     // --------------------------------------------------------------------------------------
 
 
-    private function getLesTraces($idUtilisateur): array
+    public function getLesTraces($idUtilisateur): array
     {
-        $txt_req = "SELECT * FROM tracegps_traces WHERE idUtilisateur = :idUtilisateur ORDER BY dateHeureDebut DESC";
+        $txt_req = "SELECT * FROM tracegps_traces WHERE idUtilisateur = :idUtilisateur ORDER BY dateDebut DESC";
         $req = $this->cnx->prepare($txt_req);
         $req->bindValue(":idUtilisateur", $idUtilisateur, PDO::PARAM_INT);
         $req->execute();
         $lesTraces = array();
         while ($uneLigne = $req->fetch(PDO::FETCH_OBJ)) {
+            $dateHeureFin = property_exists($uneLigne, 'dateHeureFin') ? $uneLigne->dateHeureFin : null;
             $uneTrace = new Trace(
                 $uneLigne->id,
-                $uneLigne->dateHeureDebut,
+                $uneLigne->dateDebut,
                 $uneLigne->terminee,
-                $uneLigne->dateHeureFin,
+                $dateHeureFin,
                 $uneLigne->idUtilisateur
+
             );
+
             $lesTraces[] = $uneTrace;
         }
         $req->closeCursor();
         return $lesTraces;
     }
 
-    private function supprimerUneTrace($idTrace)
+    public function supprimerUneTrace($idTrace): bool
     {
         $txt_req1 = "DELETE FROM tracegps_points WHERE idTrace = :idTrace";
         $req1 = $this->cnx->prepare($txt_req1);
         $req1->bindValue(":idTrace", $idTrace, PDO::PARAM_INT);
-        if (!$req1->execute()) {
-            return;
+        $ok= $req1->execute();
+        if (!$ok)
+        {
+            return $ok;
         }
 
         $txt_req2 = "DELETE FROM tracegps_traces WHERE id = :idTrace";
         $req2 = $this->cnx->prepare($txt_req2);
         $req2->bindValue(":idTrace", $idTrace, PDO::PARAM_INT);
         $req2->execute();
+        $ok = $req2->execute();
+        return $ok;
     }
 
+    public function getLesPointsDeTrace($idTrace): array
+    {
+        $lesPoints = array();
+        $txtReq = "SELECT * FROM tracegps_points WHERE idTrace = :idTrace ORDER BY id ASC;";
+        $req = $this->cnx->prepare($txtReq);
+        $req->bindValue(":idTrace", $idTrace, PDO::PARAM_INT);
+
+        // Exécuter la requête
+        $req->execute();
+
+        // Boucler sur chaque ligne de résultat
+        while ($uneLigne = $req->fetch(PDO::FETCH_ASSOC)) {
+            // Créer un nouvel objet PointDeTrace avec les données récupérées
+            $unPoint = new PointDeTrace(
+                $uneLigne['idTrace'],
+                $uneLigne['id'],
+                $uneLigne['latitude'],
+                $uneLigne['longitude'],
+                $uneLigne['altitude'],
+                $uneLigne['dateHeure'],
+                $uneLigne['rythmeCardio'],
+                0,0,0
+
+            );
+
+            // Ajouter l'objet PointDeTrace au tableau
+            $lesPoints[] = $unPoint;
+        }
+
+        // Libérer les ressources associées au jeu de résultats
+        $req->closeCursor();
+
+        // Retourner la collection de points de trace
+        return $lesPoints;
+    }
 
 
     // --------------------------------------------------------------------------------------
