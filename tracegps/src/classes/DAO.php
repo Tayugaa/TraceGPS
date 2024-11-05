@@ -362,13 +362,16 @@ class DAO
     // --------------------------------------------------------------------------------------
 
 
-    public function getLesTraces($idUtilisateur): array
-    {
+    public function getLesTraces($idUtilisateur): array {
+        // préparation de la requête pour récupérer les traces de l'utilisateur
         $txt_req = "SELECT * FROM tracegps_traces WHERE idUtilisateur = :idUtilisateur ORDER BY dateDebut DESC";
         $req = $this->cnx->prepare($txt_req);
         $req->bindValue(":idUtilisateur", $idUtilisateur, PDO::PARAM_INT);
         $req->execute();
+
         $lesTraces = array();
+
+        // boucle pour chaque trace trouvée
         while ($uneLigne = $req->fetch(PDO::FETCH_OBJ)) {
             $dateHeureFin = property_exists($uneLigne, 'dateHeureFin') ? $uneLigne->dateHeureFin : null;
             $uneTrace = new Trace(
@@ -377,12 +380,22 @@ class DAO
                 $uneLigne->terminee,
                 $dateHeureFin,
                 $uneLigne->idUtilisateur
-
             );
 
+            // récupération et ajout des points pour chaque trace
+            $lesPoints = $this->getLesPointsDeTrace($uneLigne->id);
+            foreach ($lesPoints as $unPoint) {
+                $uneTrace->ajouterPoint($unPoint);
+            }
+
+            // ajout de l'objet Trace (avec ses points) dans la collection
             $lesTraces[] = $uneTrace;
         }
+
+        // libération des ressources
         $req->closeCursor();
+
+        // retour de la collection de traces
         return $lesTraces;
     }
 
@@ -440,6 +453,43 @@ class DAO
         // Retourner la collection de points de trace
         return $lesPoints;
     }
+
+    public function getUneTrace($idTrace) {
+        // préparation de la requête de recherche pour la trace
+        $txt_req = "SELECT * FROM tracegps_traces WHERE id = :idTrace";
+        $req = $this->cnx->prepare($txt_req);
+        $req->bindValue(":idTrace", $idTrace, PDO::PARAM_INT);
+        $req->execute();
+        $uneLigne = $req->fetch(PDO::FETCH_OBJ);
+
+        // si aucune trace n'est trouvée, retourner null
+        if (!$uneLigne) {
+            return null;
+        }
+
+        // construction de l'objet Trace
+        $dateHeureFin = property_exists($uneLigne, 'dateHeureFin') ? $uneLigne->dateHeureFin : null;
+        $uneTrace = new Trace(
+            $uneLigne->id,
+            $uneLigne->dateDebut,
+            $uneLigne->terminee,
+            $dateHeureFin,
+            $uneLigne->idUtilisateur
+        );
+
+        // utilisation de getLesPointsDeTrace pour ajouter les points à l'objet Trace
+        $lesPoints = $this->getLesPointsDeTrace($idTrace);
+        foreach ($lesPoints as $unPoint) {
+            $uneTrace->ajouterPoint($unPoint);
+        }
+
+        // libère les ressources du jeu de données
+        $req->closeCursor();
+
+        // retourne l'objet Trace avec ses points
+        return $uneTrace;
+    }
+
 
 
     // --------------------------------------------------------------------------------------
