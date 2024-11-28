@@ -617,8 +617,60 @@ class DAO
         return false; // Retourne false en cas d'échec
     }
 
+    public function autoriseAConsulter($idAutorisant, $idAutorise): bool
+    {
 
+        $txt_req = "SELECT COUNT(*) FROM tracegps_autorisations WHERE idAutorisant = :idAutorisant AND idAutorise = :idAutorise";
+        $req = $this->cnx->prepare($txt_req);
+        $req->execute(['idAutorisant' => $idAutorisant, 'idAutorise' => $idAutorise]);
+        $count = $req->fetchColumn();
+        return $count > 0;
+    }
 
+    public function creerUneAutorisation($idAutorisant, $idAutorise): bool
+    {
+        try {
+            // Vérifier si l'autorisation existe déjà
+            $sql = "SELECT COUNT(*) FROM tracegps_autorisations 
+                WHERE idAutorisant = :idAutorisant AND idAutorise = :idAutorise";
+            $stmt = $this->cnx->prepare($sql);
+            $stmt->execute(['idAutorisant' => $idAutorisant, 'idAutorise' => $idAutorise]);
+            $count = $stmt->fetchColumn();
+
+            if ($count > 0) {
+                // L'autorisation existe déjà, retournez false
+                return false;
+            }
+
+            // Insérer une nouvelle autorisation
+            $sql = "INSERT INTO tracegps_autorisations (idAutorisant, idAutorise) 
+                VALUES (:idAutorisant, :idAutorise)";
+            $stmt = $this->cnx->prepare($sql);
+            $stmt->execute(['idAutorisant' => $idAutorisant, 'idAutorise' => $idAutorise]);
+
+            return true; // L'insertion a réussi
+        } catch (PDOException $e) {
+            // Une erreur est survenue, retournez false
+            return false;
+        }
+    }
+
+    public function supprimerUneAutorisation($idAutorisant, $idAutorise): bool
+    {
+        try {
+            // Supprimer l'autorisation correspondante
+            $sql = "DELETE FROM tracegps_autorisations 
+                WHERE idAutorisant = :idAutorisant AND idAutorise = :idAutorise";
+            $stmt = $this->cnx->prepare($sql);
+            $stmt->execute(['idAutorisant' => $idAutorisant, 'idAutorise' => $idAutorise]);
+
+            // Vérifier si une ligne a été supprimée
+            return $stmt->rowCount() > 0;
+        } catch (PDOException $e) {
+            // Retourner false en cas d'erreur
+            return false;
+        }
+    }
 
 
 } // fin de la classe DAO
