@@ -49,7 +49,7 @@ include_once ('Point.php');
 include_once ('Outils.php');
 
 // inclusion des paramètres de l'application
-include_once ('../../public/parametres.php');
+include_once ('parametres.php');
 
 // début de la classe DAO (Data Access Object)
 class DAO

@@ -2,7 +2,7 @@
 
 namespace classes;
 
-include_once('../classes/PointDeTrace.php');
+include_once('PointDeTrace.php');
 
 class Trace
 {
