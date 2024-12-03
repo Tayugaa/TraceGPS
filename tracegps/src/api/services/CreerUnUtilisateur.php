@@ -18,7 +18,7 @@
 use classes\Outils;
 use classes\Utilisateur;
 
-include_once("../../classes/DAO.php");
+//include_once("../../classes/DAO.php");
 
 $dao = new DAO();
 

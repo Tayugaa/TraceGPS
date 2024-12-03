@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="53725f46-7929-48e7-8bd6-943b4cb3af8c" name="Changes" comment="feat(DAO, DAO.test3): Developpement autoriseAConsulter et son test unitaire.&#10;&#10; Developpement CreerUneAutorisation et son test unitaire.&#10; &#10; Developpement supprimerUneAutorisation et son test unitaire.">
+    <list default="true" id="53725f46-7929-48e7-8bd6-943b4cb3af8c" name="Changes" comment="feat(ChangerDeMDP, Connecter, CreerUnUtilisateur, GetToutLesUtilisateurs, SupprimerUnUtilisateur,ValiderDemandeAutorisation/ Api, rest ):">
+      <change afterPath="$PROJECT_DIR$/tracegps/src/api/services/DemanderMdp.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tracegps/public/afficher_phpinfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/tracegps/src/public/afficher_phpinfo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tracegps/public/parametres.php" beforeDir="false" afterPath="$PROJECT_DIR$/tracegps/src/classes/parametres.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tracegps/public/test_acces_bdd_tracegps.php" beforeDir="false" afterPath="$PROJECT_DIR$/tracegps/src/public/test_acces_bdd_tracegps.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracegps/src/api/services/CreerUnUtilisateur.php" beforeDir="false" afterPath="$PROJECT_DIR$/tracegps/src/api/services/CreerUnUtilisateur.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracegps/src/api/services/GetTousLesUtilisateurs.php" beforeDir="false" afterPath="$PROJECT_DIR$/tracegps/src/api/services/GetTousLesUtilisateurs.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tracegps/src/classes/DAO.php" beforeDir="false" afterPath="$PROJECT_DIR$/tracegps/src/classes/DAO.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tracegps/src/classes/PointDeTrace.php" beforeDir="false" afterPath="$PROJECT_DIR$/tracegps/src/classes/PointDeTrace.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tracegps/src/classes/Trace.php" beforeDir="false" afterPath="$PROJECT_DIR$/tracegps/src/classes/Trace.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +151,7 @@
       <workItem from="1730822217583" duration="1867000" />
       <workItem from="1732632642075" duration="5720000" />
       <workItem from="1732787412754" duration="6391000" />
-      <workItem from="1733228910249" duration="6374000" />
+      <workItem from="1733228910249" duration="11686000" />
     </task>
     <task id="LOCAL-00001" summary="4">
       <option name="closed" value="true" />
@@ -275,7 +273,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732809598186</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="feat(ChangerDeMDP, Connecter, CreerUnUtilisateur, GetToutLesUtilisateurs, SupprimerUnUtilisateur,ValiderDemandeAutorisation/ Api, rest ):">
+      <option name="closed" value="true" />
+      <created>1733238491842</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1733238491842</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -314,7 +320,8 @@
     <MESSAGE value="feat(DAO, DAO.test1): Developpement getUneTrace et son test unitaire. Changement de la fonction getLesTraces avec l'utilisation de la fonction getLesPointsDeTrace" />
     <MESSAGE value="feat(DAO, DAO.test4): Developpement creerUneTrace et son test unitaire.&#10;&#10; Developpement creerUnPointDeTrace et son test unitaire.&#10; &#10; Developpement getToutesLesTraces et son test unitaire." />
     <MESSAGE value="feat(DAO, DAO.test3): Developpement autoriseAConsulter et son test unitaire.&#10;&#10; Developpement CreerUneAutorisation et son test unitaire.&#10; &#10; Developpement supprimerUneAutorisation et son test unitaire." />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(DAO, DAO.test3): Developpement autoriseAConsulter et son test unitaire.&#10;&#10; Developpement CreerUneAutorisation et son test unitaire.&#10; &#10; Developpement supprimerUneAutorisation et son test unitaire." />
+    <MESSAGE value="feat(ChangerDeMDP, Connecter, CreerUnUtilisateur, GetToutLesUtilisateurs, SupprimerUnUtilisateur,ValiderDemandeAutorisation/ Api, rest ):" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(ChangerDeMDP, Connecter, CreerUnUtilisateur, GetToutLesUtilisateurs, SupprimerUnUtilisateur,ValiderDemandeAutorisation/ Api, rest ):" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

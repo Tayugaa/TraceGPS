@@ -672,6 +672,10 @@ class DAO
         }
     }
 
+    public function existeAdrMailUtilisateur($adrMail)
+    {
+    }
+
 
 } // fin de la classe DAO
 
