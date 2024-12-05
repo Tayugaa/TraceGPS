@@ -676,6 +676,22 @@ class DAO
     {
     }
 
+    public function mettreAJourMotDePasse($pseudo, string $mdpHash)
+    {
+    }
+
+    public function getUtilisateursAutorises($pseudo)
+    {
+    }
+
+    public function getLesUtilisateursQueJautorise($pseudo)
+    {
+    }
+
+    public function estProprietaireDeTrace($pseudo, $idTrace)
+    {
+    }
+
 
 } // fin de la classe DAO
 

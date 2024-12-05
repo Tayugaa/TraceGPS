@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53725f46-7929-48e7-8bd6-943b4cb3af8c" name="Changes" comment="feat(ChangerDeMDP, Connecter, CreerUnUtilisateur, GetToutLesUtilisateurs, SupprimerUnUtilisateur,ValiderDemandeAutorisation/ Api, rest ):">
-      <change afterPath="$PROJECT_DIR$/tracegps/src/api/services/DemanderMdp.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tracegps/src/api/services/DemanderUneAutorisation.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tracegps/src/api/services/GetLesUtilisateursQueJautorise.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tracegps/src/api/services/CreerUnUtilisateur.php" beforeDir="false" afterPath="$PROJECT_DIR$/tracegps/src/api/services/CreerUnUtilisateur.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tracegps/src/api/services/GetTousLesUtilisateurs.php" beforeDir="false" afterPath="$PROJECT_DIR$/tracegps/src/api/services/GetTousLesUtilisateurs.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracegps/src/api/services/DemanderMdp.php" beforeDir="false" afterPath="$PROJECT_DIR$/tracegps/src/api/services/DemanderMdp.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracegps/src/api/services/SupprimerUnUtilisateur.php" beforeDir="false" afterPath="$PROJECT_DIR$/tracegps/src/api/services/SupprimerUnUtilisateur.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tracegps/src/classes/DAO.php" beforeDir="false" afterPath="$PROJECT_DIR$/tracegps/src/classes/DAO.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,33 +61,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JavaScript Debug.test_acces_bdd_tracegps.php.executor": "Debug",
-    "PHP Script.DAO.test.php.executor": "Run",
-    "PHP Script.Mobile_Detect.php.executor": "Debug",
-    "PHP Script.Outils.php.executor": "Debug",
-    "PHP Script.Outils.test.php.executor": "Debug",
-    "PHP Script.Point.test.php.executor": "Debug",
-    "PHP Script.PointDeTrace.test.php.executor": "Debug",
-    "PHP Script.Trace.test.php.executor": "Debug",
-    "PHP Script.Utilisateur.test.php.executor": "Debug",
-    "PHP Script.afficher_phpinfo.php.executor": "Debug",
-    "PHP Script.essai.php.executor": "Run",
-    "PHP Script.test_acces_bdd_tracegps.php.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/berthelo.a/OneDrive - Lycée de la Salle/AAA BTS SIO2 24-25/Dev/Cyber/code",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.webide.settings.project.settings.php",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JavaScript Debug.test_acces_bdd_tracegps.php.executor&quot;: &quot;Debug&quot;,
+    &quot;PHP Script.DAO.test.php.executor&quot;: &quot;Run&quot;,
+    &quot;PHP Script.Mobile_Detect.php.executor&quot;: &quot;Debug&quot;,
+    &quot;PHP Script.Outils.php.executor&quot;: &quot;Debug&quot;,
+    &quot;PHP Script.Outils.test.php.executor&quot;: &quot;Debug&quot;,
+    &quot;PHP Script.Point.test.php.executor&quot;: &quot;Debug&quot;,
+    &quot;PHP Script.PointDeTrace.test.php.executor&quot;: &quot;Debug&quot;,
+    &quot;PHP Script.Trace.test.php.executor&quot;: &quot;Debug&quot;,
+    &quot;PHP Script.Utilisateur.test.php.executor&quot;: &quot;Debug&quot;,
+    &quot;PHP Script.afficher_phpinfo.php.executor&quot;: &quot;Debug&quot;,
+    &quot;PHP Script.essai.php.executor&quot;: &quot;Run&quot;,
+    &quot;PHP Script.test_acces_bdd_tracegps.php.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/berthelo.a/OneDrive - Lycée de la Salle/AAA BTS SIO2 24-25/Dev/Cyber/code&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.webide.settings.project.settings.php&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\ws-php-dp\tracegps\src\classes" />
@@ -152,6 +153,7 @@
       <workItem from="1732632642075" duration="5720000" />
       <workItem from="1732787412754" duration="6391000" />
       <workItem from="1733228910249" duration="11686000" />
+      <workItem from="1733390859058" duration="10641000" />
     </task>
     <task id="LOCAL-00001" summary="4">
       <option name="closed" value="true" />
