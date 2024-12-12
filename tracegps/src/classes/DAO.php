@@ -801,10 +801,31 @@ class DAO
     }
 
 
-    public function estProprietaireDeTrace($pseudo, $idTrace)
+    public function terminerUneTrace($idTrace): bool
     {
-    }
+        // Récupérer les points de la trace pour déterminer la date du dernier point
+        $lesPoints = $this->getLesPointsDeTrace($idTrace);
 
+        // Déterminer la date de fin
+        if (count($lesPoints) > 0) {
+            // Si la trace contient des points, la date de fin est la date du dernier point
+            $dateFin = $lesPoints[count($lesPoints) - 1]->getDateHeure();
+        } else {
+            // Sinon, la date de fin est la date système actuelle
+            $dateFin = date('Y-m-d H:i:s');
+        }
+
+        // Préparation de la requête pour terminer la trace
+        $txt_req = "UPDATE tracegps_traces 
+                SET terminee = 1, dateFin = :dateFin 
+                WHERE id = :idTrace";
+        $req = $this->cnx->prepare($txt_req);
+        $req->bindValue(":dateFin", $dateFin, PDO::PARAM_STR);
+        $req->bindValue(":idTrace", $idTrace, PDO::PARAM_INT);
+
+        // Exécuter la requête et retourner le résultat
+        return $req->execute();
+    }
 
 } // fin de la classe DAO
 
