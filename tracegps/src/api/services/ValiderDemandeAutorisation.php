@@ -21,7 +21,7 @@ global $ADR_MAIL_EMETTEUR, $ADR_SERVICE_WEB;
 // connexion du serveur web à la base MySQL
 use classes\Outils;
 
-include_once("../../classes/DAO.php");
+include_once("../classes/DAO.php");
 
 $dao = new DAO();
 

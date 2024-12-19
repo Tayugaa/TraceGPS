@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="53725f46-7929-48e7-8bd6-943b4cb3af8c" name="Changes" comment="feat(ChangerDeMDP, Connecter, CreerUnUtilisateur, GetToutLesUtilisateurs, SupprimerUnUtilisateur,ValiderDemandeAutorisation/ Api, rest ):">
-      <change afterPath="$PROJECT_DIR$/tracegps/src/api/services/DemanderUneAutorisation.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tracegps/src/api/services/GetLesUtilisateursQueJautorise.php" afterDir="false" />
+    <list default="true" id="53725f46-7929-48e7-8bd6-943b4cb3af8c" name="Changes" comment="feat(DAO,DAO.test1): Ajout la méthode terminerUneTrace ainsi que son test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tracegps/src/api/services/DemanderMdp.php" beforeDir="false" afterPath="$PROJECT_DIR$/tracegps/src/api/services/DemanderMdp.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tracegps/src/api/services/SupprimerUnUtilisateur.php" beforeDir="false" afterPath="$PROJECT_DIR$/tracegps/src/api/services/SupprimerUnUtilisateur.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tracegps/src/classes/DAO.php" beforeDir="false" afterPath="$PROJECT_DIR$/tracegps/src/classes/DAO.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracegps/src/api/services/ValiderDemandeAutorisation.php" beforeDir="false" afterPath="$PROJECT_DIR$/tracegps/src/api/services/ValiderDemandeAutorisation.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +149,11 @@
       <workItem from="1732632642075" duration="5720000" />
       <workItem from="1732787412754" duration="6391000" />
       <workItem from="1733228910249" duration="11686000" />
-      <workItem from="1733390859058" duration="10641000" />
+      <workItem from="1733390859058" duration="12574000" />
+      <workItem from="1734009753889" duration="5717000" />
+      <workItem from="1734077091726" duration="748000" />
+      <workItem from="1734447117256" duration="112000" />
+      <workItem from="1734447282797" duration="26000" />
     </task>
     <task id="LOCAL-00001" summary="4">
       <option name="closed" value="true" />
@@ -283,7 +283,47 @@
       <option name="project" value="LOCAL" />
       <updated>1733238491842</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="feat(DemanderMDP, DemanderUneAutorisation, GetLesUtilisateursQueJautorise, SupprimerUnUtilisateur): &#10;&#10;Dev de DemanderMdp.php DemanderUneAutorisation.php GetLesUtilisateursQueJautorise.php et SupprimerUnUtilisateur.php">
+      <option name="closed" value="true" />
+      <created>1733411402237</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1733411402237</updated>
+    </task>
+    <task id="LOCAL-00018" summary="feat(DAO,DAO.test3): Ajouts des méthodes : existeAdrMailUtilisateur,getLesUtilisateursAutorisant, getLesUtilisateursAutorises, getLesTracesAutorisees &#10;Ajouts des tests de la classe DAO">
+      <option name="closed" value="true" />
+      <created>1734010381036</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1734010381036</updated>
+    </task>
+    <task id="LOCAL-00019" summary="feat(DAO.test2): Ajouts des tests méthodes : existeAdrMailUtilisateur,getLesUtilisateursAutorisant, getLesUtilisateursAutorises, getLesTracesAutorisees">
+      <option name="closed" value="true" />
+      <created>1734010923497</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1734010923497</updated>
+    </task>
+    <task id="LOCAL-00020" summary="fix(DAO.test3): Correction d'erreurs dans le fichier DAO.test3">
+      <option name="closed" value="true" />
+      <created>1734010971473</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1734010971473</updated>
+    </task>
+    <task id="LOCAL-00021" summary="feat(DAO,DAO.test1): Ajout la méthode terminerUneTrace ainsi que son test">
+      <option name="closed" value="true" />
+      <created>1734013381306</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1734013381306</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -323,7 +363,12 @@
     <MESSAGE value="feat(DAO, DAO.test4): Developpement creerUneTrace et son test unitaire.&#10;&#10; Developpement creerUnPointDeTrace et son test unitaire.&#10; &#10; Developpement getToutesLesTraces et son test unitaire." />
     <MESSAGE value="feat(DAO, DAO.test3): Developpement autoriseAConsulter et son test unitaire.&#10;&#10; Developpement CreerUneAutorisation et son test unitaire.&#10; &#10; Developpement supprimerUneAutorisation et son test unitaire." />
     <MESSAGE value="feat(ChangerDeMDP, Connecter, CreerUnUtilisateur, GetToutLesUtilisateurs, SupprimerUnUtilisateur,ValiderDemandeAutorisation/ Api, rest ):" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(ChangerDeMDP, Connecter, CreerUnUtilisateur, GetToutLesUtilisateurs, SupprimerUnUtilisateur,ValiderDemandeAutorisation/ Api, rest ):" />
+    <MESSAGE value="feat(DemanderMDP, DemanderUneAutorisation, GetLesUtilisateursQueJautorise, SupprimerUnUtilisateur): &#10;&#10;Dev de DemanderMdp.php DemanderUneAutorisation.php GetLesUtilisateursQueJautorise.php et SupprimerUnUtilisateur.php" />
+    <MESSAGE value="feat(DAO,DAO.test3): Ajouts des méthodes : existeAdrMailUtilisateur,getLesUtilisateursAutorisant, getLesUtilisateursAutorises, getLesTracesAutorisees &#10;Ajouts des tests de la classe DAO" />
+    <MESSAGE value="feat(DAO.test2): Ajouts des tests méthodes : existeAdrMailUtilisateur,getLesUtilisateursAutorisant, getLesUtilisateursAutorises, getLesTracesAutorisees" />
+    <MESSAGE value="fix(DAO.test3): Correction d'erreurs dans le fichier DAO.test3" />
+    <MESSAGE value="feat(DAO,DAO.test1): Ajout la méthode terminerUneTrace ainsi que son test" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(DAO,DAO.test1): Ajout la méthode terminerUneTrace ainsi que son test" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
