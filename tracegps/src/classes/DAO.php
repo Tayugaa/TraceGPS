@@ -827,9 +827,75 @@ class DAO
         return $req->execute();
     }
 
-    public function getLesUtilisateursQueJautorise($pseudo)
-    {
+    public function getLesUtilisateursQuiMautorisent($pseudo): array {
+        // Récupérer l'id de l'utilisateur à partir de son pseudo
+        $txt_req = "SELECT id FROM tracegps_utilisateurs WHERE pseudo = :pseudo";
+        $req = $this->cnx->prepare($txt_req);
+        $req->bindValue(":pseudo", $pseudo, PDO::PARAM_STR);
+        $req->execute();
+        $ligne = $req->fetch(PDO::FETCH_ASSOC);
+
+        if (!$ligne) {
+            return []; // Aucun utilisateur trouvé avec ce pseudo
+        }
+        $idUtilisateur = $ligne['id'];
+
+        // Requête pour récupérer les utilisateurs autorisant l'utilisateur donné
+        $txt_req = "SELECT u.id, u.pseudo, u.adrMail, u.numTel, u.niveau, u.dateCreation
+                FROM tracegps_utilisateurs u
+                INNER JOIN tracegps_autorisations a ON u.id = a.idAutorisant
+                WHERE a.idAutorise = :idUtilisateur";
+        $req = $this->cnx->prepare($txt_req);
+        $req->bindValue(":idUtilisateur", $idUtilisateur, PDO::PARAM_INT);
+        $req->execute();
+
+        $lesUtilisateurs = [];
+        while ($ligne = $req->fetch(PDO::FETCH_ASSOC)) {
+            $lesUtilisateurs[] = $ligne;
+        }
+        return $lesUtilisateurs;
     }
+
+    public function getLesUtilisateursQueJautorise($pseudo): array {
+        // Récupérer l'id de l'utilisateur à partir de son pseudo
+        $txt_req = "SELECT id FROM tracegps_utilisateurs WHERE pseudo = :pseudo";
+        $req = $this->cnx->prepare($txt_req);
+        $req->bindValue(":pseudo", $pseudo, PDO::PARAM_STR);
+        $req->execute();
+        $ligne = $req->fetch(PDO::FETCH_ASSOC);
+
+        if (!$ligne) {
+            return []; // Aucun utilisateur trouvé avec ce pseudo
+        }
+        $idUtilisateur = $ligne['id'];
+
+        // Requête pour récupérer les utilisateurs que cet utilisateur autorise
+        $txt_req = "SELECT u.id, u.pseudo, u.adrMail, u.numTel, u.niveau, u.dateCreation
+                FROM tracegps_utilisateurs u
+                INNER JOIN tracegps_autorisations a ON u.id = a.idAutorise
+                WHERE a.idAutorisant = :idUtilisateur";
+        $req = $this->cnx->prepare($txt_req);
+        $req->bindValue(":idUtilisateur", $idUtilisateur, PDO::PARAM_INT);
+        $req->execute();
+
+        // Construction de la collection des utilisateurs autorisés
+        $lesUtilisateurs = [];
+        while ($ligne = $req->fetch(PDO::FETCH_ASSOC)) {
+            $lesUtilisateurs[] = [
+                'id' => $ligne['id'],
+                'pseudo' => $ligne['pseudo'],
+                'adrMail' => $ligne['adrMail'],
+                'numTel' => $ligne['numTel'],
+                'niveau' => $ligne['niveau'],
+                'dateCreation' => $ligne['dateCreation'],
+            ];
+        }
+        return $lesUtilisateurs;
+    }
+
+
+
+
 
 } // fin de la classe DAO
 
