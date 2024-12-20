@@ -107,10 +107,11 @@ class Rest {
                 $this->request = $this->remettreEnFormeLesEntrees($this->request);
                 break;
             default:
-                $this->envoyerReponse('',406);
+                $this->envoyerReponse(405, "application/json; charset=utf-8", json_encode(["error" => "Method not allowed"]));
                 break;
         }
     }
+
 
     // Cette méthode nettoie les données envoyées avec la requête
     protected function remettreEnFormeLesEntrees($data) {
