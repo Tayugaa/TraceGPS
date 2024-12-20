@@ -3,15 +3,6 @@
 // fichier : api/services/GetLesUtilisateursQueJautorise.php
 // Dernière mise à jour : 05/12/2024 par dP
 
-// Rôle : Ce service permet à un utilisateur d'obtenir la liste des utilisateurs qu'il autorise à consulter ses parcours.
-// Le service web doit recevoir 3 paramètres :
-//     pseudo : le pseudo de l'utilisateur
-//     mdp : le mot de passe de l'utilisateur hashé en sha1
-//     lang : le langage du flux de données retourné ("xml" ou "json") ; "xml" par défaut si le paramètre est absent ou incorrect
-// Le service retourne un flux de données XML ou JSON contenant un compte-rendu d'exécution
-
-// Suppression de l'usage de `use` pour Outils, car ce n'est pas nécessaire ici
-
 $dao = new DAO();
 
 // Initialisation de la variable $data
@@ -36,7 +27,7 @@ if ($this->getMethodeRequete() != "GET") {
         $code_reponse = 400;
     } else {
         // Vérification de l'authentification de l'utilisateur
-        if ($dao->getNiveauConnexion($pseudo, $mdpSha1) != 1) { // Vérification du niveau d'accès
+        if ($dao->getNiveauConnexion($pseudo, $mdpSha1) != 1) {
             $msg = "Erreur : authentification incorrecte.";
             $code_reponse = 401;
         } else {
@@ -76,9 +67,6 @@ exit;
 // ================================================================================================
 
 // Création du flux XML en sortie
-/**
- * @throws DOMException
- */
 function creerFluxXML($msg, $data)
 {
     $doc = new DOMDocument();
@@ -111,7 +99,7 @@ function creerFluxXML($msg, $data)
             $elt_utilisateur->appendChild($doc->createElement('numTel', $utilisateur['numTel']));
             $elt_utilisateur->appendChild($doc->createElement('niveau', $utilisateur['niveau']));
             $elt_utilisateur->appendChild($doc->createElement('dateCreation', $utilisateur['dateCreation']));
-            $elt_utilisateur->appendChild($doc->createElement('nbTraces', $utilisateur['nbTraces']));
+            $elt_utilisateur->appendChild($doc->createElement('nbTraces', $utilisateur['nbTraces'] ?? 0));
 
             if (isset($utilisateur['dateDerniereTrace'])) {
                 $elt_utilisateur->appendChild($doc->createElement('dateDerniereTrace', $utilisateur['dateDerniereTrace']));
@@ -120,7 +108,6 @@ function creerFluxXML($msg, $data)
     }
 
     $doc->formatOutput = true;
-
     return $doc->saveXML();
 }
 
@@ -141,7 +128,7 @@ function creerFluxJSON($msg, $data)
                 "numTel" => $utilisateur['numTel'],
                 "niveau" => $utilisateur['niveau'],
                 "dateCreation" => $utilisateur['dateCreation'],
-                "nbTraces" => $utilisateur['nbTraces'],
+                "nbTraces" => $utilisateur['nbTraces'] ?? 0,
                 "dateDerniereTrace" => $utilisateur['dateDerniereTrace'] ?? null
             ];
         }
@@ -150,6 +137,4 @@ function creerFluxJSON($msg, $data)
 
     return json_encode($response, JSON_PRETTY_PRINT);
 }
-
-// ================================================================================================
 ?>
