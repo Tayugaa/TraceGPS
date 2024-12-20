@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="53725f46-7929-48e7-8bd6-943b4cb3af8c" name="Changes" comment="feat()">
-      <change afterPath="$PROJECT_DIR$/tracegps/src/api/services/DemarrerEnregistrementParcours.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tracegps/src/api/services/SupprimerUnParcours.php" afterDir="false" />
+    <list default="true" id="53725f46-7929-48e7-8bd6-943b4cb3af8c" name="Changes" comment="feat(GetLesUtilisateursQuimMutorisent.php):  Ajout du service GetLesUtilisateursQuiMautorisent&#10;&#10;- Ajout de la méthode `getLesUtilisateursQuiMautorisent` dans la classe DAO.&#10;- Mise à jour du fichier `GetLesUtilisateursQuiMautorisent.php` pour récupérer les utilisateurs autorisant un utilisateur donné.&#10;- Gestion des réponses en XML et JSON.&#10;- Vérification des paramètres d'entrée et gestion des erreurs.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tracegps/src/classes/DAO.php" beforeDir="false" afterPath="$PROJECT_DIR$/tracegps/src/classes/DAO.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracegps/src/api/rest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tracegps/src/api/rest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,7 +156,7 @@
       <workItem from="1734447282797" duration="26000" />
       <workItem from="1734617202370" duration="629000" />
       <workItem from="1734617846935" duration="284000" />
-      <workItem from="1734684386812" duration="606000" />
+      <workItem from="1734684386812" duration="3393000" />
     </task>
     <task id="LOCAL-00001" summary="4">
       <option name="closed" value="true" />
@@ -344,7 +342,39 @@
       <option name="project" value="LOCAL" />
       <updated>1734617783738</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="feat()">
+      <option name="closed" value="true" />
+      <created>1734685088311</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1734685088311</updated>
+    </task>
+    <task id="LOCAL-00025" summary="feat(DAO.php): Ajoute de la fonction getLesUtilisateursQueJautorise">
+      <option name="closed" value="true" />
+      <created>1734688163892</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1734688163892</updated>
+    </task>
+    <task id="LOCAL-00026" summary="feat(GetLesUtilisateursQueJautorise.php): Ajout du service GetLesUtilisateursQueJautorise&#10;&#10;Ajout de la méthode `getLesUtilisateursQueJautorise` dans la classe DAO.&#10;- Mise à jour du fichier `GetLesUtilisateursQueJautorise.php` pour récupérer et afficher les utilisateurs autorisés.&#10;- Gestion des réponses en XML et JSON.&#10;- Ajout de vérifications pour les erreurs et les cas limites.">
+      <option name="closed" value="true" />
+      <created>1734688334300</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1734688334300</updated>
+    </task>
+    <task id="LOCAL-00027" summary="feat(GetLesUtilisateursQuimMutorisent.php):  Ajout du service GetLesUtilisateursQuiMautorisent&#10;&#10;- Ajout de la méthode `getLesUtilisateursQuiMautorisent` dans la classe DAO.&#10;- Mise à jour du fichier `GetLesUtilisateursQuiMautorisent.php` pour récupérer les utilisateurs autorisant un utilisateur donné.&#10;- Gestion des réponses en XML et JSON.&#10;- Vérification des paramètres d'entrée et gestion des erreurs.">
+      <option name="closed" value="true" />
+      <created>1734688395206</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1734688395206</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -391,7 +421,10 @@
     <MESSAGE value="feat(DAO,DAO.test1): Ajout la méthode terminerUneTrace ainsi que son test" />
     <MESSAGE value="feat(ValiderDemandeAutorisation)" />
     <MESSAGE value="feat()" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat()" />
+    <MESSAGE value="feat(DAO.php): Ajoute de la fonction getLesUtilisateursQueJautorise" />
+    <MESSAGE value="feat(GetLesUtilisateursQueJautorise.php): Ajout du service GetLesUtilisateursQueJautorise&#10;&#10;Ajout de la méthode `getLesUtilisateursQueJautorise` dans la classe DAO.&#10;- Mise à jour du fichier `GetLesUtilisateursQueJautorise.php` pour récupérer et afficher les utilisateurs autorisés.&#10;- Gestion des réponses en XML et JSON.&#10;- Ajout de vérifications pour les erreurs et les cas limites." />
+    <MESSAGE value="feat(GetLesUtilisateursQuimMutorisent.php):  Ajout du service GetLesUtilisateursQuiMautorisent&#10;&#10;- Ajout de la méthode `getLesUtilisateursQuiMautorisent` dans la classe DAO.&#10;- Mise à jour du fichier `GetLesUtilisateursQuiMautorisent.php` pour récupérer les utilisateurs autorisant un utilisateur donné.&#10;- Gestion des réponses en XML et JSON.&#10;- Vérification des paramètres d'entrée et gestion des erreurs." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(GetLesUtilisateursQuimMutorisent.php):  Ajout du service GetLesUtilisateursQuiMautorisent&#10;&#10;- Ajout de la méthode `getLesUtilisateursQuiMautorisent` dans la classe DAO.&#10;- Mise à jour du fichier `GetLesUtilisateursQuiMautorisent.php` pour récupérer les utilisateurs autorisant un utilisateur donné.&#10;- Gestion des réponses en XML et JSON.&#10;- Vérification des paramètres d'entrée et gestion des erreurs." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
