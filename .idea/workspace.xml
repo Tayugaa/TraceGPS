@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="53725f46-7929-48e7-8bd6-943b4cb3af8c" name="Changes" comment="feat(DAO,DAO.test1): Ajout la méthode terminerUneTrace ainsi que son test">
+    <list default="true" id="53725f46-7929-48e7-8bd6-943b4cb3af8c" name="Changes" comment="feat()">
+      <change afterPath="$PROJECT_DIR$/tracegps/src/api/services/DemarrerEnregistrementParcours.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tracegps/src/api/services/SupprimerUnParcours.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tracegps/src/api/services/ValiderDemandeAutorisation.php" beforeDir="false" afterPath="$PROJECT_DIR$/tracegps/src/api/services/ValiderDemandeAutorisation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracegps/src/classes/DAO.php" beforeDir="false" afterPath="$PROJECT_DIR$/tracegps/src/classes/DAO.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,6 +156,9 @@
       <workItem from="1734077091726" duration="748000" />
       <workItem from="1734447117256" duration="112000" />
       <workItem from="1734447282797" duration="26000" />
+      <workItem from="1734617202370" duration="629000" />
+      <workItem from="1734617846935" duration="284000" />
+      <workItem from="1734684386812" duration="606000" />
     </task>
     <task id="LOCAL-00001" summary="4">
       <option name="closed" value="true" />
@@ -323,7 +328,23 @@
       <option name="project" value="LOCAL" />
       <updated>1734013381306</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="feat(ValiderDemandeAutorisation)">
+      <option name="closed" value="true" />
+      <created>1734617576967</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1734617576967</updated>
+    </task>
+    <task id="LOCAL-00023" summary="feat()">
+      <option name="closed" value="true" />
+      <created>1734617783738</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1734617783738</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -368,7 +389,9 @@
     <MESSAGE value="feat(DAO.test2): Ajouts des tests méthodes : existeAdrMailUtilisateur,getLesUtilisateursAutorisant, getLesUtilisateursAutorises, getLesTracesAutorisees" />
     <MESSAGE value="fix(DAO.test3): Correction d'erreurs dans le fichier DAO.test3" />
     <MESSAGE value="feat(DAO,DAO.test1): Ajout la méthode terminerUneTrace ainsi que son test" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(DAO,DAO.test1): Ajout la méthode terminerUneTrace ainsi que son test" />
+    <MESSAGE value="feat(ValiderDemandeAutorisation)" />
+    <MESSAGE value="feat()" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat()" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
