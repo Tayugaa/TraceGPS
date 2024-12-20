@@ -10,78 +10,69 @@
 //     lang : le langage du flux de données retourné ("xml" ou "json") ; "xml" par défaut si le paramètre est absent ou incorrect
 // Le service retourne un flux de données XML ou JSON contenant un compte-rendu d'exécution
 
+// Connexion à la base de données
 $dao = new DAO();
 
-// Initialisation de la variable $data
-$data = [];
-
-// Récupération des données transmises
+// Récupération des paramètres depuis la requête HTTP
 $pseudo = (empty($this->request['pseudo'])) ? "" : $this->request['pseudo'];
 $mdpSha1 = (empty($this->request['mdp'])) ? "" : $this->request['mdp'];
-$lang = (empty($this->request['lang'])) ? "" : $this->request['lang'];
+$lang = (empty($this->request['lang'])) ? "xml" : $this->request['lang'];
 
-// "xml" par défaut si le paramètre lang est absent ou incorrect
-if ($lang != "json") $lang = "xml";
-
-// La méthode HTTP utilisée doit être GET
-if ($this->getMethodeRequete() != "GET") {
-    $msg = "Erreur : méthode HTTP incorrecte.";
-    $code_reponse = 406;
+// Vérification des paramètres
+if ($pseudo == "" || $mdpSha1 == "") {
+    $msg = "Erreur : données incomplètes.";
+    $code_reponse = 400;
+    $lesUtilisateurs = [];
 } else {
-    // Les paramètres doivent être présents
-    if ($pseudo == "" || $mdpSha1 == "") {
-        $msg = "Erreur : données incomplètes.";
-        $code_reponse = 400;
-    } else {
-        // Vérification de l'authentification de l'utilisateur
-        if ($dao->getNiveauConnexion($pseudo, $mdpSha1) != 1) {
-            $msg = "Erreur : authentification incorrecte.";
-            $code_reponse = 401;
-        } else {
-            // Récupération des utilisateurs autorisant l'utilisateur actuel
-            $utilisateursAutorisant = $dao->getLesUtilisateursQuiMautorisent($pseudo);
+    // Authentification de l'utilisateur
+    $niveauConnexion = $dao->getNiveauConnexion($pseudo, $mdpSha1);
 
-            if (empty($utilisateursAutorisant)) {
-                // Aucun utilisateur autorisant trouvé
-                $msg = "Aucune autorisation accordée à " . $pseudo . ".";
-                $code_reponse = 200;
-            } else {
-                // Utilisateurs autorisant trouvés
-                $msg = count($utilisateursAutorisant) . " autorisation(s) accordée(s) à " . $pseudo . ".";
-                $data = $utilisateursAutorisant;
-                $code_reponse = 200;
-            }
+    if ($niveauConnexion == 0) {
+        $msg = "Erreur : authentification incorrecte.";
+        $code_reponse = 401;
+        $lesUtilisateurs = [];
+    } else {
+        // Récupération des utilisateurs qui autorisent cet utilisateur
+        $utilisateur = $dao -> getUnUtilisateur($pseudo);
+        $IdUtilisateur = $utilisateur -> getId();
+        $lesUtilisateurs = $dao->getLesUtilisateursAutorisant($IdUtilisateur);
+
+        // Assurez-vous que $lesUtilisateurs est un tableau
+        if ($lesUtilisateurs === null) {
+            $lesUtilisateurs = [];
+        }
+
+        $nb = count($lesUtilisateurs);
+        if ($nb == 0) {
+            $msg = "Aucune autorisation accordée à $pseudo.";
+            $code_reponse = 200;
+        } else {
+            $msg = "$nb autorisation(s) accordée(s) à $pseudo.";
+            $code_reponse = 200;
         }
     }
 }
 
-// Ferme la connexion à MySQL
-unset($dao);
-
-// Création du flux en sortie
+// Génération de la réponse dans le format demandé
 if ($lang == "xml") {
     $content_type = "application/xml; charset=utf-8";
-    $donnees = creerFluxXML($msg, $data);
+    $donnees = creerFluxXML($msg, $lesUtilisateurs);
 } else {
     $content_type = "application/json; charset=utf-8";
-    $donnees = creerFluxJSON($msg, $data);
+    $donnees = creerFluxJSON($msg, $lesUtilisateurs);
 }
 
 // Envoi de la réponse HTTP
 $this->envoyerReponse($code_reponse, $content_type, $donnees);
-exit;
 
-// ================================================================================================
+// Fermeture de la connexion
+unset($dao);
 
-// Création du flux XML en sortie
-function creerFluxXML($msg, $data)
-{
+// Fonction pour créer un flux XML
+function creerFluxXML($msg, $lesUtilisateurs) {
     $doc = new DOMDocument();
     $doc->version = '1.0';
     $doc->encoding = 'UTF-8';
-
-    $elt_commentaire = $doc->createComment('Service web GetLesUtilisateursQuiMautorisent - BTS SIO - Lycée De La Salle - Rennes');
-    $doc->appendChild($elt_commentaire);
 
     $elt_data = $doc->createElement('data');
     $doc->appendChild($elt_data);
@@ -89,62 +80,55 @@ function creerFluxXML($msg, $data)
     $elt_reponse = $doc->createElement('reponse', $msg);
     $elt_data->appendChild($elt_reponse);
 
-    if (!empty($data)) {
+    if (count($lesUtilisateurs) > 0) {
         $elt_donnees = $doc->createElement('donnees');
         $elt_data->appendChild($elt_donnees);
 
         $elt_lesUtilisateurs = $doc->createElement('lesUtilisateurs');
         $elt_donnees->appendChild($elt_lesUtilisateurs);
 
-        foreach ($data as $utilisateur) {
+        foreach ($lesUtilisateurs as $unUtilisateur) {
             $elt_utilisateur = $doc->createElement('utilisateur');
             $elt_lesUtilisateurs->appendChild($elt_utilisateur);
 
-            $elt_utilisateur->appendChild($doc->createElement('id', $utilisateur['id']));
-            $elt_utilisateur->appendChild($doc->createElement('pseudo', $utilisateur['pseudo']));
-            $elt_utilisateur->appendChild($doc->createElement('adrMail', $utilisateur['adrMail']));
-            $elt_utilisateur->appendChild($doc->createElement('numTel', $utilisateur['numTel']));
-            $elt_utilisateur->appendChild($doc->createElement('niveau', $utilisateur['niveau']));
-            $elt_utilisateur->appendChild($doc->createElement('dateCreation', $utilisateur['dateCreation']));
-            $elt_utilisateur->appendChild($doc->createElement('nbTraces', $utilisateur['nbTraces']));
+            $elt_utilisateur->appendChild($doc->createElement('id', $unUtilisateur->getId()));
+            $elt_utilisateur->appendChild($doc->createElement('pseudo', $unUtilisateur->getPseudo()));
+            $elt_utilisateur->appendChild($doc->createElement('adrMail', $unUtilisateur->getAdrMail()));
+            $elt_utilisateur->appendChild($doc->createElement('numTel', $unUtilisateur->getNumTel()));
+            $elt_utilisateur->appendChild($doc->createElement('niveau', $unUtilisateur->getNiveau()));
+            $elt_utilisateur->appendChild($doc->createElement('dateCreation', $unUtilisateur->getDateCreation()));
+            $elt_utilisateur->appendChild($doc->createElement('nbTraces', $unUtilisateur->getNbTraces()));
 
-            if (isset($utilisateur['dateDerniereTrace'])) {
-                $elt_utilisateur->appendChild($doc->createElement('dateDerniereTrace', $utilisateur['dateDerniereTrace']));
+            if ($unUtilisateur->getNbTraces() > 0) {
+                $elt_utilisateur->appendChild($doc->createElement('dateDerniereTrace', $unUtilisateur->getDateDerniereTrace()));
             }
         }
     }
 
     $doc->formatOutput = true;
-
     return $doc->saveXML();
 }
 
-// ================================================================================================
-
-// Création du flux JSON en sortie
-function creerFluxJSON($msg, $data)
-{
-    $response = ["data" => ["reponse" => $msg]];
-
-    if (!empty($data)) {
-        $utilisateurs = [];
-        foreach ($data as $utilisateur) {
-            $utilisateurs[] = [
-                "id" => $utilisateur['id'],
-                "pseudo" => $utilisateur['pseudo'],
-                "adrMail" => $utilisateur['adrMail'],
-                "numTel" => $utilisateur['numTel'],
-                "niveau" => $utilisateur['niveau'],
-                "dateCreation" => $utilisateur['dateCreation'],
-                "nbTraces" => $utilisateur['nbTraces'],
-                "dateDerniereTrace" => $utilisateur['dateDerniereTrace'] ?? null
+// Fonction pour créer un flux JSON
+function creerFluxJSON($msg, $lesUtilisateurs) {
+    if (count($lesUtilisateurs) == 0) {
+        $elt_data = ["reponse" => $msg];
+    } else {
+        $lesObjetsDuTableau = array();
+        foreach ($lesUtilisateurs as $unUtilisateur) {
+            $lesObjetsDuTableau[] = [
+                "id" => $unUtilisateur->getId(),
+                "pseudo" => $unUtilisateur->getPseudo(),
+                "adrMail" => $unUtilisateur->getAdrMail(),
+                "numTel" => $unUtilisateur->getNumTel(),
+                "niveau" => $unUtilisateur->getNiveau(),
+                "dateCreation" => $unUtilisateur->getDateCreation(),
+                "nbTraces" => $unUtilisateur->getNbTraces(),
+                "dateDerniereTrace" => $unUtilisateur->getDateDerniereTrace()
             ];
         }
-        $response['data']['donnees'] = ["lesUtilisateurs" => $utilisateurs];
+        $elt_data = ["reponse" => $msg, "donnees" => ["lesUtilisateurs" => $lesObjetsDuTableau]];
     }
-
-    return json_encode($response, JSON_PRETTY_PRINT);
+    return json_encode(["data" => $elt_data], JSON_PRETTY_PRINT);
 }
-
-// ================================================================================================
 ?>
