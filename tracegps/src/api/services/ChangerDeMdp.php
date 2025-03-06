@@ -16,7 +16,7 @@
 //     http://<hébergeur>/tracegps/api/ChangerDeMdppseudo=europa&mdp=13e3668bbee30b004380052b086457b014504b3e&nouveauMdp=123&confirmationMdp=123&lang=xml
 
 // connexion du serveur web à la base MySQL
-include_once("../../classes/DAO.php");
+//include_once("../../classes/DAO.php");
 
 $dao = new DAO();
 	
@@ -42,7 +42,7 @@ else {
         $code_reponse = 400;
     }
     else {
-        if ( strlen($nouveauMdp) < 3 ) {
+        if ( strlen($nouveauMdp) < 8 ) {
             $msg = 'Erreur : le mot de passe doit comporter au moins 8 caractères.';
             $code_reponse = 400;
         }
@@ -121,27 +121,27 @@ function creerFluxXML($msg)
     
     // crée une instance de DOMdocument (DOM : Document Object Model)
 	$doc = new DOMDocument();
-	
+
 	// specifie la version et le type d'encodage
 	$doc->version = '1.0';
 	$doc->encoding = 'UTF-8';
-	
+
 	// crée un commentaire et l'encode en UTF-8
 	$elt_commentaire = $doc->createComment('Service web ChangerDeMdp - BTS SIO - Lycée De La Salle - Rennes');
 	// place ce commentaire à la racine du document XML
 	$doc->appendChild($elt_commentaire);
-	
+
 	// crée l'élément 'data' à la racine du document XML
 	$elt_data = $doc->createElement('data');
 	$doc->appendChild($elt_data);
-	
+
 	// place l'élément 'reponse' juste après l'élément 'data'
 	$elt_reponse = $doc->createElement('reponse', $msg);
 	$elt_data->appendChild($elt_reponse);
-	
+
 	// Mise en forme finale
 	$doc->formatOutput = true;
-	
+
 	// renvoie le contenu XML
 	return $doc->saveXML();
 }

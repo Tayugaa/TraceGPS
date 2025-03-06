@@ -3,7 +3,6 @@
 // fichier : api/services/Connecter.php
 // Dernière mise à jour : 3/7/2021 par dP
 
-// connexion du serveur web à la base MySQL
 $dao = new DAO();
 
 // Récupération des données transmises
