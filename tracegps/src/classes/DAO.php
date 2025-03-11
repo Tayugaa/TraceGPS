@@ -385,12 +385,12 @@ class DAO
 
         // boucle pour chaque trace trouvée
         while ($uneLigne = $req->fetch(PDO::FETCH_OBJ)) {
-            $dateHeureFin = property_exists($uneLigne, 'dateHeureFin') ? $uneLigne->dateHeureFin : null;
+            $dateHeureFin = property_exists($uneLigne, 'dateFin') ? $uneLigne->dateFin : null;
             $uneTrace = new Trace(
                 $uneLigne->id,
                 $uneLigne->dateDebut,
-                $uneLigne->terminee,
                 $dateHeureFin,
+                $uneLigne->terminee,
                 $uneLigne->idUtilisateur
             );
 
