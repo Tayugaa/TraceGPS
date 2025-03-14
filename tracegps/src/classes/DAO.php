@@ -467,38 +467,31 @@ class DAO
     }
 
     public function getUneTrace($idTrace) {
-        // préparation de la requête de recherche pour la trace
+        // Préparation de la requête pour récupérer la trace
         $txt_req = "SELECT * FROM tracegps_traces WHERE id = :idTrace";
         $req = $this->cnx->prepare($txt_req);
         $req->bindValue(":idTrace", $idTrace, PDO::PARAM_INT);
         $req->execute();
+
+        // Récupération de la ligne de résultat
         $uneLigne = $req->fetch(PDO::FETCH_OBJ);
 
-        // si aucune trace n'est trouvée, retourner null
+        // Si aucune trace n'est trouvée, retourner null
         if (!$uneLigne) {
             return null;
         }
 
-        // construction de l'objet Trace
-        $dateHeureFin = property_exists($uneLigne, 'dateHeureFin') ? $uneLigne->dateHeureFin : null;
+        // Construction de l'objet Trace
+        $dateHeureFin = property_exists($uneLigne, 'dateFin') ? $uneLigne->dateFin : null;
+
         $uneTrace = new Trace(
             $uneLigne->id,
             $uneLigne->dateDebut,
-            $uneLigne->terminee,
             $dateHeureFin,
+            $uneLigne->terminee,
             $uneLigne->idUtilisateur
         );
 
-        // utilisation de getLesPointsDeTrace pour ajouter les points à l'objet Trace
-        $lesPoints = $this->getLesPointsDeTrace($idTrace);
-        foreach ($lesPoints as $unPoint) {
-            $uneTrace->ajouterPoint($unPoint);
-        }
-
-        // libère les ressources du jeu de données
-        $req->closeCursor();
-
-        // retourne l'objet Trace avec ses points
         return $uneTrace;
     }
 
@@ -697,9 +690,21 @@ class DAO
     }
 
 
-    public function mettreAJourMotDePasse($pseudo, string $mdpHash)
+    public function mettreAJourMotDePasse($pseudo, $mdpHash): bool
     {
+        $req = "UPDATE utilisateurs SET mdp = :mdp WHERE pseudo = :pseudo";
+        $stmt = $this->cnx->prepare($req);
+        $stmt->bindParam(":mdp", $mdpHash);
+        $stmt->bindParam(":pseudo", $pseudo);
+        $ok = $stmt->execute();
+
+        if (!$ok) {
+            error_log("Erreur lors de l'UPDATE : " . $this->cnx->errorInfo()[2]); // Ajoute cette ligne pour voir l'erreur
+        }
+
+        return $ok;
     }
+
 
     //Méthode getLesUtilisateursAutorisant($idUtilisateur) qui fournit la collection des utilisateurs (de niveau 1) autorisant l'utilisateur $idUtilisateur à voir leurs parcours
     public function getLesUtilisateursAutorisant($idUtilisateur): array
